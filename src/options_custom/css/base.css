@@ -1,0 +1,94 @@
+body{
+    background: #ecf0f1;
+    font: 14px/1.231 "Open Sans", sans-serif;
+    font-size: 16px;
+}
+
+.holder{
+    background: #fff;
+    border-radius:5px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    margin:100px auto;
+    padding:30px 20px 20px;
+    width:600px;
+}
+
+td{
+    border-bottom:1px solid #f6f6f6;
+    padding:5px 10px;
+}
+
+td:nth-child(2){
+    text-align: right;
+    width: 40px;
+}
+
+tr:last-child td{
+    border:none;
+    padding:30px 10px 10px;
+    text-align: center;
+}
+
+input[type="text"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(3em + 2px);
+    margin: 0 0 1em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 1.5em;
+    background: #fff;
+    resize: none;
+    outline: none;
+}
+input[type="text"][required]:focus {
+    border-color: #00bafa;
+}
+input[type="text"][required]:focus + label[placeholder]:before {
+    color: #00bafa;
+}
+input[type="text"][required]:focus + label[placeholder]:before,
+input[type="text"][required]:valid + label[placeholder]:before {
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transform: translate(0, -1.5em) scale(0.9, 0.9);
+    transform: translate(0, -1.5em) scale(0.9, 0.9);
+}
+input[type="text"][required]:invalid + label[placeholder][alt]:before {
+    content: attr(alt);
+}
+input[type="text"][required] + label[placeholder] {
+    display: block;
+    pointer-events: none;
+    line-height: 1.25em;
+    margin-top: calc(-3em - 2px);
+    margin-bottom: calc((3em - 1em) + 2px);
+}
+input[type="text"][required] + label[placeholder]:before {
+    content: attr(placeholder);
+    display: inline-block;
+    margin: 0 calc(1em + 2px);
+    padding: 0 2px;
+    color: #898989;
+    white-space: nowrap;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff));
+    background-image: linear-gradient(to bottom, #fff, #fff);
+    background-size: 100% 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input[type=submit] {
+    background-color: #2ecc71;
+    border: 0;
+    border-radius: 4px;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size:16px;
+    text-align: center;
+    padding: 12px 20px 14px;
+}
