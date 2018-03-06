@@ -1,7 +1,7 @@
 (function() {
 
     function flash() {
-        var s = document.getElementById('balance');
+        const s = document.getElementById('balance');
         var op = 0.1;
         var increment = +0.1;
         s.style.opacity = 0;
@@ -18,46 +18,36 @@
 
     }
 
-    function getBalance(account) {
-        const base_url = "https://data.ripple.com/v2/accounts/";
-
-        var xhr = new XMLHttpRequest();
-        try {
-            xhr.open("GET", base_url + account + '/balances?currency=XRP', false);
-            xhr.send();
-
-            var resp = JSON.parse(xhr.responseText);
-
-            if(resp.result === "success"){
-                var balance = resp.balances[0].value ;
-                document.getElementById('balance').innerText = balance
-                flash()
-            }
-        }
-        catch (e) {
-            alert("Error: " + e.toString())
-        }
-
-
-
+    function balanceCallback(balance) {
+        var options = {'balance' : balance};
+        chrome.storage.sync.set(options, function() {});
+        document.getElementById('balance').innerText = balance;
+        flash()
     }
 
-    chrome.storage.sync.get(['address'], function(item) {
-        if(item.hasOwnProperty('address')) {
-        if(!item['address']){
-            document.getElementById('address').innerText = 'Not Set ...'
-        }else{
-                window.address = item['address']
-                document.getElementById('address').innerText = item['address'];
-                getBalance(item['address'])
+    chrome.storage.sync.get(['account', 'balance'], function(item) {
+        if (item.hasOwnProperty('balance')){
+            document.getElementById('balance').innerText = item['balance'];
+        }
+
+        if(item.hasOwnProperty('account')) {
+            if(!item['account']){
+                document.getElementById('account').innerText = 'Not Set ...'
+            }else{
+                window.account = item['account'];
+                document.getElementById('account').innerText = item['account'];
+                //get balance with delay
+                setTimeout(function func() {
+                    getBalance(item['account'], balanceCallback)
+                }, 1000);
             }
         }
 
     });
 
     document.getElementById("refreshBtn").onclick = function() {
-        if(window.address){
-            getBalance(window.address)
+        if(window.account){
+            getBalance(window.account, balanceCallback)
         }
     };
 
