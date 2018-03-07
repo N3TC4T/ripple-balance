@@ -1,6 +1,6 @@
 {
   "name": "Ripple Balance",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "Check Your Ripple Account Balance In Your Browser",
   "homepage_url": "https://github.com/N3TC4T/ripple-balance",

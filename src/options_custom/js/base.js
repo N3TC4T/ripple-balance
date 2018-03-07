@@ -36,7 +36,7 @@
 
             chrome.storage.sync.set(options, function() {
                 //send signal that we need to restart the extension
-                chrome.runtime.sendMessage("naanmfnncpcmciebfkgihhhlfmjdpdja",{type: 'restart' });
+                chrome.runtime.sendMessage(chrome.runtime.id,{type: 'restart' });
                 alert('Settings saved!');
             });
         });
